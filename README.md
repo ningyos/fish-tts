@@ -4,14 +4,17 @@ Inference-focused package for [Fish-Speech](https://github.com/fishaudio/fish-sp
 
 Built with [Fish Audio](https://fish.audio).
 
-## Features
+## Highlights
 
-- **Standalone package**: No external fish_speech dependency
-- **Singleton pattern**: Model loaded once per process
-- **torch.compile**: ~120 tokens/sec, RTF ~0.26
-- **Prefilled references**: Set voice profiles once, reuse across calls
-- **Pipeline streaming**: Parallel generation and decoding (~18% faster)
-- **Dynamic references**: Add/remove voice profiles at runtime
+Compared to the upstream Fish-Speech, this package adds:
+
+- **Standalone package**: Extracted pure inference code, no fish_speech dependency needed
+- **Mandatory torch.compile + Inductor**: coordinate descent tuning, persistent cache, ~120 tokens/sec (RTF ~0.26). Without compile, inference is ~10x slower
+- **Singleton pattern**: Thread-safe model loading, loaded once per process
+- **Prefilled references**: Pre-encode voice profiles and reuse across calls, avoiding redundant encoding
+- **Pipeline streaming**: Token generation and vocoder decoding run in parallel (separate thread + queue), ~18% faster end-to-end
+- **Dynamic references**: Add/remove voice profiles at runtime without reloading
+- **bf16 vocoder**: DAC vocoder auto-cast to bf16 on CUDA for faster decode
 
 ## Installation
 
