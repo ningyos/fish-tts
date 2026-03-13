@@ -24,6 +24,9 @@ build/
 .cache/
 *.cache
 
+# UV
+uv.lock
+
 # OS
 .DS_Store
 Thumbs.db

@@ -2,6 +2,8 @@
 
 Inference-focused package for [Fish-Speech](https://github.com/fishaudio/fish-speech).
 
+Built with [Fish Audio](https://fish.audio).
+
 ## Features
 
 - **Standalone package**: No external fish_speech dependency
@@ -71,9 +73,17 @@ synth.clear_references()
 | torch.compile | ~120 tokens/sec | ~0.26 |
 | Pipeline streaming | +18% faster | - |
 
+## Built by
+
+This project was built with [Claude Code](https://claude.ai/claude-code) (Claude Opus 4.5 / 4.6).
+
 ## License
 
-CC-BY-NC-SA-4.0
+Licensed under the [Fish Audio Research License](LICENSE).
+Research and non-commercial use is free. Commercial use requires a separate
+license from [Fish Audio](https://fish.audio).
+
+See [NOTICE](NOTICE) for attribution details.
 
 ## References
 

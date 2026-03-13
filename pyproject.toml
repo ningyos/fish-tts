@@ -3,10 +3,11 @@ name = "fish-tts"
 version = "0.6.0"
 description = "Standalone TTS using DualARTransformer and DAC vocoder"
 readme = "README.md"
-license = "CC-BY-NC-SA-4.0"
+license = "LicenseRef-FishAudio-Research"
+license-files = ["LICENSE"]
 requires-python = ">=3.10"
 authors = [
-    { name = "smolgura", email = "smolgura@example.com" }
+    { name = "ProgCat", email = "progcat@protonmail.com" }
 ]
 keywords = ["tts", "speech-synthesis", "fish-speech"]
 classifiers = [

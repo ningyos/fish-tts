@@ -1,3 +1,8 @@
+# Copyright 2025-2026 ProgCat / smolGura
+# Derived from Fish-Speech (https://github.com/fishaudio/fish-speech)
+# Copyright 2024-2026 Fish Audio / 39 AI, INC.
+# Licensed under the Fish Audio Research License. See LICENSE for details.
+
 """DAC vocoder for Fish-TTS.
 
 This module provides the DAC (Descript Audio Codec) based vocoder,

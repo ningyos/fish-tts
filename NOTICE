@@ -1,0 +1,25 @@
+fish-tts
+Copyright 2025-2026 ProgCat / smolGura
+
+This model is licensed under the Fish Audio Research License,
+Copyright (c) 39 AI, INC. All Rights Reserved.
+
+Built with Fish Audio.
+
+This project is a Derivative Work based on:
+
+Fish-Speech (https://github.com/fishaudio/fish-speech)
+  Copyright 2024-2026 Fish Audio / 39 AI, INC.
+  Licensed under the Fish Audio Research License
+  Authors: Fish Audio Team
+
+DAC - Descript Audio Codec (https://github.com/descriptinc/descript-audio-codec)
+  Copyright Descript, Inc.
+  Licensed under the MIT License
+
+Modifications in this project:
+  - Extracted standalone inference package (no fish_speech dependency)
+  - Reimplemented DualARTransformer model loading and inference
+  - Added singleton pattern, torch.compile, pipeline streaming
+  - Added prefilled reference voice profiles
+  - Added dynamic reference management
