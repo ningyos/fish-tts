@@ -510,8 +510,13 @@ class FishTTS:
 
         prompt_text, prompt_tokens = self._get_prompt_data(references)
 
+        # codes_queue keeps a small backpressure window for the AR loop;
+        # audio_queue is unbounded because we MUST drain everything the
+        # decoder produces — bounding it deadlocked the worker on its
+        # `audio_queue.put(None)` sentinel when the generator finished
+        # faster than the consumer could yield.
         codes_queue: queue.Queue[torch.Tensor | None] = queue.Queue(maxsize=3)
-        audio_queue: queue.Queue[bytes | None] = queue.Queue(maxsize=3)
+        audio_queue: queue.Queue[bytes | None] = queue.Queue()
 
         error_holder: list[Exception] = []
 
@@ -578,12 +583,16 @@ class FishTTS:
         finally:
             codes_queue.put(None)
 
+        # Drain audio_queue using blocking get() to handle the case where
+        # the decoder is still processing the last codes chunk(s) when we
+        # exit the for-loop. The sentinel `None` produced by decoder's
+        # finally block tells us the worker is done.
+        while True:
+            audio = audio_queue.get()
+            if audio is None:
+                break
+            yield audio
         decoder_thread.join()
-
-        while not audio_queue.empty():
-            audio = audio_queue.get_nowait()
-            if audio is not None:
-                yield audio
 
         if error_holder:
             raise error_holder[0]
